@@ -22,18 +22,18 @@ const schema = a
       })
       .authorization((allow) => [
         allow.group("GuestUser").to(["read"]),
-        allow.group("AdminUser").to(["read", "update", "delete"]),
+        allow.group("AdminUser").to(["read", "update", "delete", "create"]),
       ]),
     SessionsAttended: a
       .model({
         id: a.id().required(),
         sessionAttendedId: a.id().required(),
         earningsThatSession: a.float(),
-        date: a.belongsTo("User", "sessionAttendedId"),
+        date: a.belongsTo("User", "sessionAttendedId"), //date belongs to a user? -matthew july 1
       })
       .authorization((allow) => [
         allow.group("GuestUser").to(["read"]),
-        allow.group("AdminUser").to(["read", "update", "delete"]),
+        allow.group("AdminUser").to(["read", "update", "delete", "create"]),
       ]),
   })
   .authorization((allow) => [allow.resource(preSignUp).to(["mutate"])]);
